@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ChoriChava | Chorizos Artesanales</title>
+    
+    <!-- Fuentes Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================================
+           ESTILOS GENERALES
+           ========================================= */
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #FAFAFA;
+            color: #2d2d2d;
+            line-height: 1.4;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --brand-red: #8B0000;      
+            --brand-gold: #FFD700;     
+            --brand-dark: #1A1A1A;     
+            --card-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+            box-shadow: 0 0 50px rgba(0,0,0,0.05);
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: var(--brand-dark);
+            height: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px; 
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .nav-logo {
+            height: 45px;
+            width: auto;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+            margin-left: 5px;
+        }
+
+        .menu-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 10px;
+        }
+
+        .menu-btn span {
+            width: 30px; 
+            height: 3px; 
+            background-color: var(--brand-gold);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        /* Menú Móvil */
+        .mobile-menu {
+            position: fixed;
+            top: 60px;
+            right: -100%;
+            width: 80%;
+            height: calc(100vh - 60px);
+            background: rgba(26, 26, 26, 0.98);
+            backdrop-filter: blur(10px);
+            transition: 0.4s ease;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .mobile-menu.active { right: 0; }
+
+        .mobile-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 600;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Hero */
+        .hero-section {
+            width: 100%;
+            background: black;
+            position: relative;
+            line-height: 0; 
+        }
+
+        .hero-img {
+            width: 100%;
+            height: auto; 
+            display: block;
+            object-fit: contain;
+        }
+
+        /* Badges */
+        .trust-badges {
+            padding: 15px 10px; 
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            background: white;
+            margin-top: -5px; 
+        }
+
+        .badge {
+            flex: 1;
+            background: white;
+            border-radius: 12px;
+            padding: 10px 5px; 
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 90px;
+        }
+
+        .badge img, .badge span {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .badge img { width: 40px; height: 40px; object-fit: contain; }
+
+        .badge p {
+            font-size: 0.6rem; 
+            font-weight: 700;
+            color: var(--brand-red);
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        /* Secciones de Productos (General) */
+        .products-section {
+            padding: 10px 0 20px 0; 
+            background: #FAFAFA;
+            border-bottom: 1px solid #eee; 
+        }
+
+        /* === AJUSTES ESPECÍFICOS (Lo que pediste) === */
+        #tradicional, #otros {
+            padding-top: 0 !important; /* Quitamos relleno arriba */
+            margin-top: -20px; /* Subimos la sección a la fuerza */
+            border-top: none; /* Quitamos líneas divisorias dobles si las hubiera */
+        }
+
+        #tradicional .section-title, 
+        #otros .section-title {
+            margin-top: 5px !important; /* Título más pegadito arriba */
+            margin-bottom: 15px !important;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            color: var(--brand-dark);
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+        
+        .section-title span { color: var(--brand-red); }
+
+        /* Carrusel */
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .carousel-container {
+            width: 100%;
+            overflow-x: auto;
+            padding-bottom: 15px;
+            -webkit-overflow-scrolling: touch; 
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth; 
+        }
+
+        .carousel-container::-webkit-scrollbar { display: none; }
+
+        .carousel-track {
+            display: flex;
+            gap: 15px; 
+            padding: 0 15px; 
+            width: max-content;
+        }
+        /* Flechas (General - Aplica a Gourmet) */
+        .nav-arrow {
+            position: absolute;
+            top: 28%; /* Posición original para Gourmet */
+            transform: translateY(-50%);
+            width: 35px;
+            height: 35px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            border: 1px solid #eee;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--brand-red);
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.2s;
+        }
+
+        /* === AJUSTE SOLO PARA TRADICIONAL Y OTROS === */
+        /* Subimos las flechas un poquito más (al 22%) solo en estas secciones */
+        #tradicional .nav-arrow, 
+        #otros .nav-arrow {
+            top: 22%;
+        }
+        
+        .nav-arrow:active { transform: translateY(-50%) scale(0.9); background: var(--brand-red); color: white; }
+        .nav-arrow.prev { left: 5px; }
+        .nav-arrow.next { right: 5px; }
+
+        /* Tarjeta de Producto */
+        .product-card {
+            width: 260px;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            scroll-snap-align: center;
+            position: relative;
+        }
+
+        .card-image-box {
+            height: 200px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            position: relative;
+            border-bottom: 1px solid #eee;
+        }
+
+        .product-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transform: scale(1.1); 
+            filter: drop-shadow(0 8px 12px rgba(0,0,0,0.15));
+        }
+
+        .card-details {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--brand-dark);
+            margin-bottom: 3px;
+            text-transform: uppercase;
+        }
+
+        .card-desc {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 10px;
+            height: 35px;
+            overflow: hidden;
+            line-height: 1.3;
+        }
+
+        .buy-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(45deg, var(--brand-red), #a00000);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(139, 0, 0, 0.2);
+            transition: transform 0.2s;
+        }
+
+        .buy-btn:active { transform: scale(0.95); }
+
+        /* =========================================
+           SECCIÓN DE CONTACTO
+           ========================================= */
+        .contact-section {
+            padding: 40px 20px;
+            text-align: center;
+            background: white;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .contact-title {
+            color: var(--brand-red);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .contact-text {
+            font-size: 1rem;
+            color: #444;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .whatsapp-main-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: #25D366;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+            margin-bottom: 40px;
+            transition: transform 0.2s;
+        }
+
+        .whatsapp-main-btn:active { transform: scale(0.98); }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .contact-icon {
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+        }
+
+        .contact-label {
+            font-weight: 600;
+            color: var(--brand-dark);
+            font-size: 1rem;
+        }
+
+        /* Flotante & Footer */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 55px;
+            height: 55px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.5);
+            z-index: 2000;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        footer {
+            background: var(--brand-dark);
+            color: #888;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.75rem;
+        }
+
+        footer img { width: 120px; margin-bottom: 10px; opacity: 0.8; }
+
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- HEADER -->
+        <nav class="navbar">
+            <img src="https://github.com/Clata1014/Chorichava4/blob/main/Fonditonuevo.png?raw=true" alt="Logo ChoriChava" class="nav-logo">
+            <button class="menu-btn" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </button>
+        </nav>
+
+        <!-- MENU MÓVIL -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#" onclick="toggleMenu()">Inicio</a>
+            <a href="#gourmet" onclick="toggleMenu()">Línea Gourmet</a>
+            <a href="#tradicional" onclick="toggleMenu()">Línea Tradicional</a>
+            <a href="#otros" onclick="toggleMenu()">Otros Productos</a>
+            <a href="https://wa.me/573001234567" target="_blank">Contacto</a>
+        </div>
+
+        <!-- HERO -->
+        <header class="hero-section">
+            <img src="https://github.com/Clata1014/Chorichava4/blob/main/Fondoparrilla.png?raw=true" alt="Chorizos" class="hero-img">
+        </header>
+
+        <!-- BADGES -->
+        <section class="trust-badges">
+            <div class="badge">
+                <span>🇨🇴</span>
+                <p>Producto<br>Colombiano</p>
+            </div>
+            <div class="badge">
+                <span>🧑‍🌾</span>
+                <p>Mercados<br>Campesinos</p>
+            </div>
+            <div class="badge">
+                <img src="https://github.com/Clata1014/Chorichava4/blob/main/Tuliorecomienda.png?raw=true" alt="Tulio">
+                <p>Tulio<br>Recomienda</p>
+            </div>
+        </section>
+
+        <!-- LÍNEA GOURMET -->
+        <section class="products-section" id="gourmet">
+            <h2 class="section-title">Línea <span>Gourmet</span></h2>
+            
+            <div class="carousel-wrapper">
+                <button class="nav-arrow prev" onclick="scrollCarousel('track-gourmet', -1)">‹</button>
+                <button class="nav-arrow next" onclick="scrollCarousel('track-gourmet', 1)">›</button>
+
+                <div class="carousel-container" id="track-gourmet">
+                    <div class="carousel-track">
+                        
+                        <!-- Ahumado -->
+                        <div class="product-card">
+                            <div class="card-image-box">
+                                <img src="https://github.com/Clata1014/Chorichava4/blob/main/Chorizoahumado.png?raw=true" class="product-photo">
+                            </div>
+                            <div class="card-details">
+                                <h3 class="card-title">Ahumado</h3>
+                                <p class="card-desc">Sabor intenso y tradicional.</p>
+                                <button class="buy-btn" onclick="orderProduct('Chorizo Ahumado')">Pedir Ahora</button>
+                            </div>
+                        </div>
+
+                        <!-- Alemán -->
+                        <div class="product-card">
+                            <div class="card-image-box">
+                                <img src="https://github.com/Clata1014/Chorichava4/blob/main/Chorizoaleman.png?raw=true" class="product-photo">
+                            </div>
+                            <div class="card-details">
+                                <h3 class="card-title">Alemán</h3>
+                                <p class="card-desc">Receta europea clásica.</p>
+                                <button class="buy-btn" onclick="orderProduct('Chorizo Alemán')">Pedir Ahora</button>
+                            </div>
+                        </div>
+
+                        <!-- Antioqueño -->
+                        <div class="product-card">
+                            <div class="card-image-box">
+                                <img src="https://github.com/Clata1014/Chorichava4/blob/main/Chorizoantioque%C3%B1o.png?raw=true" class="product-photo">
+                            </div>
+                            <div class="card-details">
+                                <h3 class="card-title">Antioqueño</h3>
+                                <p class="card-desc">El sabor de nuestra tierra.</p>
+                                <button class="buy-btn" onclick="orderProduct('Chorizo Antioqueño')">Pedir Ahora</button>
+                            </div>
+                        </div>
+
+                        <!-- Argentino -->
+                        <div class="product-card">
+                            <div class="card-image-box">
+                                <img src="https://github.com/Clata1014/Chorichava4/blob/main/Chorizoargentino.png?raw=true" class="product-photo">
+                            </div>
+                            <div class="card-details">
+                                <h3 class="card-title">Argentino</h3>
+                                <p class="card-desc">Ideal para choripán.</p>
+                                <button class="buy-btn" onclick="orderProduct('Chorizo Argentino')">Pedir Ahora</button>
+                            </div>
+                        </div>
+
+                        <!-- Español -->
+                        <div class="product-card">
+                            <div class="card-image-box">
+                                <img src="https://github.com/Clata1014/Chorichava4/blob/main/Chorizoespa%C3%B1ol.png?raw=true" class="product-photo">
+                            </div>
+                            <div class="card-details">
+                                <h3 class="card-title">Español</h3>
+                                <p class="card-desc">Con pimentón de la vera.</p>
+                                <button class="buy-btn" onclick="orderProduct('Chorizo Español')">Pedir Ahora</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LÍNEA TRADICIONAL (SUBIDA) -->
+        <section class="products-section" id="tradicional">
+            <h2 class="section-title">Línea <span>Tradicional</span></h2>
+            
+            <div class="carousel-wrapper">
+                <button class="nav-arrow prev" onclick="scrollCarousel('track-tradicional', -1)">‹</button>
+                <button class="nav-arrow next" onclick="scrollCarousel('track-tradicional', 1)">›</button>
+
+                <div class="carousel-container" id="track-tradicional">
+                    <div class="carousel-track">
+                        
+                        <!-- Coctelero -->
+                        <div class="product-card">
+                            <div class="card-image-box">
+                                <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                            </div>
+                            <div class="card-details">
+                                <h3 class="card-title">Coctelero</h3>
+                                <p class="card-desc">Pequeños y deliciosos.</p>
+                                <button class="buy-btn" onclick="orderProduct('Chorizo Coctelero')">Pedir Ahora</button>
+                            </div>
+                        </div>
+
+                        <!-- Casero -->
+                        <div class="product-card">
+                            <div class="card-image-box">
+                                <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                            </div>
+                            <div class="card-details">
+                                <h3 class="card-title">Casero</h3>
+                                <p class="card-desc">La receta de la abuela.</p>
+                                <button class="buy-btn" onclick="orderProduct('Chorizo Casero')">Pedir Ahora</button>
+                            </div>
+                        </div>
+
+                        <!-- Ternera -->
+                        <div class="product-card">
+                            <div class="card-image-box">
+                                <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                            </div>
+                            <div class="card-details">
+                                <h3 class="card-title">Ternera</h3>
+                                <p class="card-desc">Sabor suave y bajo en grasa.</p>
+                                <button class="buy-btn" onclick="orderProduct('Chorizo de Ternera')">Pedir Ahora</button>
+                            </div>
+                        </div>
+
+                        <!-- Picante -->
+                        <div class="product-card">
+                            <div class="card-image-box">
+                                <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                            </div>
+                            <div class="card-details">
+                                <h3 class="card-title">Picante</h3>
+                                <p class="card-desc">Con ají natural seleccionado.</p>
+                                <button class="buy-btn" onclick="orderProduct('Chorizo Picante')">Pedir Ahora</button>
+                            </div>
+                        </div>
+
+                        <!-- Finas Hierbas -->
+                        <div class="product-card">
+                            <div class="card-image-box">
+                                <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                            </div>
+                            <div class="card-details">
+                                <h3 class="card-title">Finas Hierbas</h3>
+                                <p class="card-desc">Aroma y sabor sofisticado.</p>
+                                <button class="buy-btn" onclick="orderProduct('Chorizo Finas Hierbas')">Pedir Ahora</button>
+                            </div>
+                        </div>
+
+                        <!-- Pollo -->
+                        <div class="product-card">
+                            <div class="card-image-box">
+                                <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                            </div>
+                            <div class="card-details">
+                                <h3 class="card-title">Pollo</h3>
+                                <p class="card-desc">Opción ligera y saludable.</p>
+                                <button class="buy-btn" onclick="orderProduct('Chorizo de Pollo')">Pedir Ahora</button>
+                            </div>
+                        </div>
+
+                        <!-- Campesino -->
+                        <div class="product-card">
+                            <div class="card-image-box">
+                                <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                            </div>
+                            <div class="card-details">
+                                <h3 class="card-title">Campesino</h3>
+                                <p class="card-desc">El sabor rústico del campo.</p>
+                                <button class="buy-btn" onclick="orderProduct('Chorizo Campesino')">Pedir Ahora</button>
+                            </div>
+                        </div>
+
+                        <!-- Vela -->
+                        <div class="product-card">
+                            <div class="card-image-box">
+                                <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                            </div>
+                            <div class="card-details">
+                                <h3 class="card-title">Vela</h3>
+                                <p class="card-desc">Tradicional largo y delgado.</p>
+                                <button class="buy-btn" onclick="orderProduct('Chorizo Vela')">Pedir Ahora</button>
+                            </div>
+                        </div>
+
+                        <!-- Parrillero -->
+                        <div class="product-card">
+                            <div class="card-image-box">
+                                <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                            </div>
+                            <div class="card-details">
+                                <h3 class="card-title">Parrillero</h3>
+                                <p class="card-desc">Grueso y jugoso para asar.</p>
+                                <button class="buy-btn" onclick="orderProduct('Chorizo Parrillero')">Pedir Ahora</button>
+                            </div>
+                        </div>
+
+                        <!-- Mixto -->
+                        <div class="product-card">
+                            <div class="card-image-box">
+                                <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                            </div>
+                            <div class="card-details">
+                                <h3 class="card-title">Mixto</h3>
+                                <p class="card-desc">Combinación perfecta res y cerdo.</p>
+                                <button class="buy-btn" onclick="orderProduct('Chorizo Mixto')">Pedir Ahora</button>
+                            </div>
+                        </div>
+
+                        <!-- Longaniza -->
+                        <div class="product-card">
+                            <div class="card-image-box">
+                                <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                            </div>
+                            <div class="card-details">
+                                <h3 class="card-title">Longaniza</h3>
+                                <p class="card-desc">Especie y sabor único.</p>
+                                <button class="buy-btn" onclick="orderProduct('Longaniza')">Pedir Ahora</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OTROS PRODUCTOS (SUBIDO) -->
+        <section class="products-section" id="otros">
+            <h2 class="section-title">Otros <span>Deliciosos</span></h2>
+            
+            <div class="carousel-wrapper">
+                <button class="nav-arrow prev" onclick="scrollCarousel('track-otros', -1)">‹</button>
+                <button class="nav-arrow next" onclick="scrollCarousel('track-otros', 1)">›</button>
+
+                <div class="carousel-container" id="track-otros">
+                    <div class="carousel-track">
+                        
+                        <!-- Butifarra -->
+                        <div class="product-card">
+                            <div class="card-image-box">
+                                <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                            </div>
+                            <div class="card-details">
+                                <h3 class="card-title">Butifarra</h3>
+                                <p class="card-desc">Auténtico sabor costeño.</p>
+                                <button class="buy-btn" onclick="orderProduct('Butifarra')">Pedir Ahora</button>
+                            </div>
+                        </div>
+
+                        <!-- Morcilla -->
+                        <div class="product-card">
+                            <div class="card-image-box">
+                                <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                            </div>
+                            <div class="card-details">
+                                <h3 class="card-title">Morcilla</h3>
+                                <p class="card-desc">Rellena de arroz y especias.</p>
+                                <button class="buy-btn" onclick="orderProduct('Morcilla')">Pedir Ahora</button>
+                            </div>
+                        </div>
+
+                        <!-- Chicharrón -->
+                        <div class="product-card">
+                            <div class="card-image-box">
+                                <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                            </div>
+                            <div class="card-details">
+                                <h3 class="card-title">Chicharrón</h3>
+                                <p class="card-desc">Crocante y carnudo.</p>
+                                <button class="buy-btn" onclick="orderProduct('Chicharrón')">Pedir Ahora</button>
+                            </div>
+                        </div>
+
+                        <!-- Costilla -->
+                        <div class="product-card">
+                            <div class="card-image-box">
+                                <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                            </div>
+                            <div class="card-details">
+                                <h3 class="card-title">Costilla</h3>
+                                <p class="card-desc">Ahumada y lista para asar.</p>
+                                <button class="buy-btn" onclick="orderProduct('Costilla Ahumada')">Pedir Ahora</button>
+                            </div>
+                        </div>
+
+                        <!-- Arepas -->
+                        <div class="product-card">
+                            <div class="card-image-box">
+                                <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                            </div>
+                            <div class="card-details">
+                                <h3 class="card-title">Arepas</h3>
+                                <p class="card-desc">El acompañante ideal.</p>
+                                <button class="buy-btn" onclick="orderProduct('Arepas')">Pedir Ahora</button>
+                            </div>
+                        </div>
+
+                        <!-- Empanadas -->
+                        <div class="product-card">
+                            <div class="card-image-box">
+                                <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                            </div>
+                            <div class="card-details">
+                                <h3 class="card-title">Empanadas</h3>
+                                <p class="card-desc">Rellenas de nuestro chorizo.</p>
+                                <button class="buy-btn" onclick="orderProduct('Empanadas')">Pedir Ahora</button>
+                            </div>
+                        </div>
+
+                        <!-- Hamburguesa -->
+                        <div class="product-card">
+                            <div class="card-image-box">
+                                <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                            </div>
+                            <div class="card-details">
+                                <h3 class="card-title">Hamburguesa</h3>
+                                <p class="card-desc">Carne de chorizo artesanal.</p>
+                                <button class="buy-btn" onclick="orderProduct('Hamburguesa de Chorizo')">Pedir Ahora</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE CONTACTO -->
+        <section class="contact-section" id="contacto">
+            <h2 class="contact-title">¿Listo para probar?</h2>
+            <p class="contact-text">Haz tu pedido ahora por WhatsApp y recibe nuestros chorizos gourmet frescos en cualquier ciudad de Colombia.</p>
+            
+            <a href="https://wa.me/573001234567" target="_blank" class="whatsapp-main-btn">
+                <span style="font-size: 1.5rem;">📱</span> Hacer Pedido por WhatsApp
+            </a>
+
+            <div class="contact-details">
+                <div class="contact-item">
+                    <span class="contact-icon">📍</span>
+                    <span class="contact-label">Medellín, Colombia</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">🕗</span>
+                    <span class="contact-label">Lun - Sáb: 8am - 7pm</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">🚚</span>
+                    <span class="contact-label">Envíos a todo el país</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <img src="https://github.com/Clata1014/Chorichava4/blob/main/Fonditonuevo.png?raw=true" alt="Chorichava">
+            <p>&copy; 2024 ChoriChava - Medellín, Colombia</p>
+            <p style="margin-top:10px; font-size: 0.7rem;">Amor por la tradición artesanal</p>
+        </footer>
+
+        <a href="https://wa.me/573001234567" class="whatsapp-float" target="_blank" title="Chatea con nosotros">
+            💬
+        </a>
+
+    </div>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+
+        function orderProduct(productName) {
+            const phone = "573001234567"; 
+            const message = `Hola ChoriChava! 👋 Me antojé del *${productName}*. ¿Me regalas más info y precios?`;
+            const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        function scrollCarousel(trackId, direction) {
+            const track = document.getElementById(trackId);
+            if (track) {
+                track.scrollBy({ left: direction * 280, behavior: 'smooth' });
+            }
+        }
+    </script>
+
+</body>
+</html>
