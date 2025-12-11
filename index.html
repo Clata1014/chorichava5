@@ -255,11 +255,19 @@
             border-radius: 14px 14px 0 0;
         }
 
+        .card-image-box.chicharron-frame { height: 240px; }
+
         .product-photo {
             width: 100%;
             height: 100%;
             object-fit: contain;
             filter: drop-shadow(0 8px 12px rgba(0,0,0,0.15));
+        }
+
+        .product-photo.chicharron-photo {
+            width: 110%;
+            height: auto;
+            max-height: 220px;
         }
 
         .card-details {
@@ -559,15 +567,15 @@
                             </div>
                         </div>
 
-                        <!-- Santarrosano -->
+                        <!-- Chicharrón -->
                         <div class="product-card">
-                            <div class="card-image-box">
-                                <img src="Chorizosantarrosano.webp" class="product-photo">
+                            <div class="card-image-box chicharron-frame">
+                                <img src="Chorizochicharrontradi.webp" class="product-photo chicharron-photo">
                             </div>
                             <div class="card-details">
-                                <h3 class="card-title">Santarrosano</h3>
-                                <p class="card-desc">Tradición de Santander.</p>
-                                <button class="buy-btn" onclick="orderProduct('Chorizo Santarrosano')">Pedir Ahora</button>
+                                <h3 class="card-title">Chicharrón</h3>
+                                <p class="card-desc">Crocante y carnudo.</p>
+                                <button class="buy-btn" onclick="orderProduct('Chorizo Chicharrón')">Pedir Ahora</button>
                             </div>
                         </div>
 
