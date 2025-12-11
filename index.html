@@ -167,22 +167,9 @@
 
         /* Secciones de Productos (General) */
         .products-section {
-            padding: 10px 0 20px 0; 
+            padding: 10px 0 20px 0;
             background: #FAFAFA;
-            border-bottom: 1px solid #eee; 
-        }
-
-        /* === AJUSTES ESPECÍFICOS (Lo que pediste) === */
-        #tradicional, #otros {
-            padding-top: 0 !important; /* Quitamos relleno arriba */
-            margin-top: -20px; /* Subimos la sección a la fuerza */
-            border-top: none; /* Quitamos líneas divisorias dobles si las hubiera */
-        }
-
-        #tradicional .section-title, 
-        #otros .section-title {
-            margin-top: 5px !important; /* Título más pegadito arriba */
-            margin-bottom: 15px !important;
+            border-bottom: 1px solid #eee;
         }
 
         .section-title {
@@ -219,10 +206,10 @@
             padding: 0 15px; 
             width: max-content;
         }
-        /* Flechas (General - Aplica a Gourmet) */
+        /* Flechas */
         .nav-arrow {
             position: absolute;
-            top: 28%; /* Posición original para Gourmet */
+            top: 28%;
             transform: translateY(-50%);
             width: 35px;
             height: 35px;
@@ -240,13 +227,6 @@
             transition: all 0.2s;
         }
 
-        /* === AJUSTE SOLO PARA TRADICIONAL Y OTROS === */
-        /* Subimos las flechas un poquito más (al 22%) solo en estas secciones */
-        #tradicional .nav-arrow, 
-        #otros .nav-arrow {
-            top: 22%;
-        }
-        
         .nav-arrow:active { transform: translateY(-50%) scale(0.9); background: var(--brand-red); color: white; }
         .nav-arrow.prev { left: 5px; }
         .nav-arrow.next { right: 5px; }
@@ -615,18 +595,6 @@
                                 <h3 class="card-title">Chicharrón</h3>
                                 <p class="card-desc">Pequeños y deliciosos.</p>
                                 <button class="buy-btn" onclick="orderProduct('Chorizo Chicharrón')">Pedir Ahora</button>
-                            </div>
-                        </div>
-
-                        <!-- Antioqueño -->
-                        <div class="product-card">
-                            <div class="card-image-box">
-                                <img src="Chorizoantioqueño.webp" class="product-photo">
-                            </div>
-                            <div class="card-details">
-                                <h3 class="card-title">Antioqueño</h3>
-                                <p class="card-desc">La receta de la abuela.</p>
-                                <button class="buy-btn" onclick="orderProduct('Chorizo Antioqueño')">Pedir Ahora</button>
                             </div>
                         </div>
 
