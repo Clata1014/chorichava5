@@ -270,6 +270,21 @@
             max-height: 220px;
         }
 
+        /* Replica del estilo gourmet para cartas destacadas en Tradicional */
+        #tradicional .product-card.gourmet-match {
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+        }
+
+        #tradicional .product-card.gourmet-match .card-image-box {
+            background: #fff;
+            border: 8px solid #fff;
+            border-bottom: 1px solid #eee;
+            border-radius: 14px 14px 0 0;
+        }
+
         .card-details {
             padding: 15px;
             text-align: center;
@@ -596,7 +611,7 @@
                     <div class="carousel-track">
                         
                         <!-- Chicharrón -->
-                        <div class="product-card">
+                        <div class="product-card gourmet-match">
                             <div class="card-image-box">
                                 <img src="Chorizochicharrontradi.webp" class="product-photo">
                             </div>
@@ -608,7 +623,7 @@
                         </div>
 
                         <!-- Santarrosano -->
-                        <div class="product-card">
+                        <div class="product-card gourmet-match">
                             <div class="card-image-box">
                                 <img src="Chorizosantarrosanotradi.webp" class="product-photo">
                             </div>
