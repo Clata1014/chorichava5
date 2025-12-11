@@ -309,6 +309,16 @@
             border-radius: 14px 14px 0 0;
         }
 
+        #tradicional .pack-bg {
+            background: white;
+            display: inline-block;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+        }
+
+        #tradicional .product-photo {
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+        }
+
         .card-details {
             padding: 15px;
             text-align: center;
@@ -606,18 +616,6 @@
                             </div>
                         </div>
 
-                        <!-- Chicharrón -->
-                        <div class="product-card">
-                            <div class="card-image-box chicharron-frame">
-                                <img src="Chorizochicharrontradi.webp" class="product-photo chicharron-photo">
-                            </div>
-                            <div class="card-details">
-                                <h3 class="card-title">Chicharrón</h3>
-                                <p class="card-desc">Crocante y carnudo.</p>
-                                <button class="buy-btn" onclick="orderProduct('Chorizo Chicharrón')">Pedir Ahora</button>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -626,7 +624,7 @@
         <!-- LÍNEA TRADICIONAL (SUBIDA) -->
         <section class="products-section" id="tradicional">
             <h2 class="section-title">Línea <span>Tradicional</span></h2>
-            
+
             <div class="carousel-wrapper">
                 <button class="nav-arrow prev" onclick="scrollCarousel('track-tradicional', -1)">‹</button>
                 <button class="nav-arrow next" onclick="scrollCarousel('track-tradicional', 1)">›</button>
@@ -637,7 +635,9 @@
                         <!-- Chicharrón -->
                         <div class="product-card">
                             <div class="card-image-box">
-                                <img src="Chorizochicharrontradi.webp" class="product-photo">
+                                <div class="pack-bg">
+                                    <img src="Chorizochicharrontradi.webp" class="product-photo">
+                                </div>
                             </div>
                             <div class="card-details">
                                 <h3 class="card-title">Chicharrón</h3>
@@ -649,7 +649,9 @@
                         <!-- Santarrosano -->
                         <div class="product-card">
                             <div class="card-image-box">
-                                <img src="Chorizosantarrosanotradi.webp" class="product-photo">
+                                <div class="pack-bg">
+                                    <img src="Chorizosantarrosanotradi.webp" class="product-photo">
+                                </div>
                             </div>
                             <div class="card-details">
                                 <h3 class="card-title">Santarrosano</h3>
@@ -661,7 +663,9 @@
                         <!-- Picante -->
                         <div class="product-card">
                             <div class="card-image-box">
-                                <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                                <div class="pack-bg">
+                                    <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                                </div>
                             </div>
                             <div class="card-details">
                                 <h3 class="card-title">Picante</h3>
@@ -673,7 +677,9 @@
                         <!-- Finas Hierbas -->
                         <div class="product-card">
                             <div class="card-image-box">
-                                <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                                <div class="pack-bg">
+                                    <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                                </div>
                             </div>
                             <div class="card-details">
                                 <h3 class="card-title">Finas Hierbas</h3>
@@ -685,7 +691,9 @@
                         <!-- Pollo -->
                         <div class="product-card">
                             <div class="card-image-box">
-                                <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                                <div class="pack-bg">
+                                    <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                                </div>
                             </div>
                             <div class="card-details">
                                 <h3 class="card-title">Pollo</h3>
@@ -697,7 +705,9 @@
                         <!-- Campesino -->
                         <div class="product-card">
                             <div class="card-image-box">
-                                <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                                <div class="pack-bg">
+                                    <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                                </div>
                             </div>
                             <div class="card-details">
                                 <h3 class="card-title">Campesino</h3>
@@ -709,7 +719,9 @@
                         <!-- Vela -->
                         <div class="product-card">
                             <div class="card-image-box">
-                                <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                                <div class="pack-bg">
+                                    <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                                </div>
                             </div>
                             <div class="card-details">
                                 <h3 class="card-title">Vela</h3>
@@ -721,7 +733,9 @@
                         <!-- Parrillero -->
                         <div class="product-card">
                             <div class="card-image-box">
-                                <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                                <div class="pack-bg">
+                                    <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                                </div>
                             </div>
                             <div class="card-details">
                                 <h3 class="card-title">Parrillero</h3>
@@ -733,7 +747,9 @@
                         <!-- Mixto -->
                         <div class="product-card">
                             <div class="card-image-box">
-                                <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                                <div class="pack-bg">
+                                    <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                                </div>
                             </div>
                             <div class="card-details">
                                 <h3 class="card-title">Mixto</h3>
@@ -745,7 +761,9 @@
                         <!-- Longaniza -->
                         <div class="product-card">
                             <div class="card-image-box">
-                                <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                                <div class="pack-bg">
+                                    <img src="https://placehold.co/300x300/eee/a51d21?text=FOTO+AQUI" class="product-photo">
+                                </div>
                             </div>
                             <div class="card-details">
                                 <h3 class="card-title">Longaniza</h3>
