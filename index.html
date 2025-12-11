@@ -43,7 +43,7 @@
         /* Navbar */
         .navbar {
             background-color: var(--brand-red);
-            height: 75px;
+            height: 65px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -55,10 +55,11 @@
         }
 
         .nav-logo {
-            height: 150px;
+            height: 180px;
             width: auto;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
-            margin-left: -5px;
+            margin-left: -68px;
+            margin-top: -65px;
         }
 
         .menu-btn {
@@ -68,13 +69,14 @@
             display: flex;
             flex-direction: column;
             gap: 5px;
-            padding: 10px;
+            padding: 12px 10px 8px;
+            margin-top: 10px;
         }
 
         .menu-btn span {
-            width: 30px; 
-            height: 3px; 
-            background-color: var(--brand-gold);
+            width: 30px;
+            height: 3px;
+            background-color: white;
             border-radius: 2px;
             transition: 0.3s;
         }
@@ -82,10 +84,10 @@
         /* Menú Móvil */
         .mobile-menu {
             position: fixed;
-            top: 75px;
+            top: 65px;
             right: -100%;
             width: 80%;
-            height: calc(100vh - 75px);
+            height: calc(100vh - 65px);
             background: rgba(26, 26, 26, 0.98);
             backdrop-filter: blur(10px);
             transition: 0.4s ease;
@@ -450,7 +452,7 @@
 
         <!-- HERO -->
         <header class="hero-section">
-            <img src="https://github.com/Clata1014/Chorichava4/blob/main/Fondoparrilla.png?raw=true" alt="Chorizos" class="hero-img">
+            <img src="https://raw.githubusercontent.com/Clata1014/chorichava5/main/Fondoparrilla.webp" alt="Chorizos" class="hero-img">
         </header>
 
         <!-- BADGES -->
@@ -537,6 +539,54 @@
                                 <h3 class="card-title">Español</h3>
                                 <p class="card-desc">Con pimentón de la vera.</p>
                                 <button class="buy-btn" onclick="orderProduct('Chorizo Español')">Pedir Ahora</button>
+                            </div>
+                        </div>
+
+                        <!-- Llanero -->
+                        <div class="product-card">
+                            <div class="card-image-box">
+                                <img src="Chorizollanero.png" class="product-photo">
+                            </div>
+                            <div class="card-details">
+                                <h3 class="card-title">Llanero</h3>
+                                <p class="card-desc">Receta tradicional del llano.</p>
+                                <button class="buy-btn" onclick="orderProduct('Chorizo Llanero')">Pedir Ahora</button>
+                            </div>
+                        </div>
+
+                        <!-- Jalapeño -->
+                        <div class="product-card">
+                            <div class="card-image-box">
+                                <img src="Chorizojalapeño.png" class="product-photo">
+                            </div>
+                            <div class="card-details">
+                                <h3 class="card-title">Jalapeño</h3>
+                                <p class="card-desc">Toque picante y aromático.</p>
+                                <button class="buy-btn" onclick="orderProduct('Chorizo Jalapeño')">Pedir Ahora</button>
+                            </div>
+                        </div>
+
+                        <!-- Marinero -->
+                        <div class="product-card">
+                            <div class="card-image-box">
+                                <img src="Chorizomarinero.png" class="product-photo">
+                            </div>
+                            <div class="card-details">
+                                <h3 class="card-title">Marinero</h3>
+                                <p class="card-desc">Notas ahumadas con especias.</p>
+                                <button class="buy-btn" onclick="orderProduct('Chorizo Marinero')">Pedir Ahora</button>
+                            </div>
+                        </div>
+
+                        <!-- Santarrosano -->
+                        <div class="product-card">
+                            <div class="card-image-box">
+                                <img src="Chorizosantarrosano.png" class="product-photo">
+                            </div>
+                            <div class="card-details">
+                                <h3 class="card-title">Santarrosano</h3>
+                                <p class="card-desc">Tradición de Santander.</p>
+                                <button class="buy-btn" onclick="orderProduct('Chorizo Santarrosano')">Pedir Ahora</button>
                             </div>
                         </div>
 
